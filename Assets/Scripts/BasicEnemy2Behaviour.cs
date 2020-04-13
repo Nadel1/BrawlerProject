@@ -37,10 +37,6 @@ public class BasicEnemy2Behaviour : MonoBehaviour
     {
         //block the start of a new coroutine using the boolean variable 
         isRunning = true;
-        yield return new WaitForSeconds(Random.Range(1, 2));//stop enemy
-        //correct the rotation so that the enemy is looking at the player
-        transform.LookAt(Player);
-        yield return new WaitForSeconds(Random.Range(1, 2));//stop enemy
         //determine a random frame amount for which the enemy will be moved
         movingFrameAmount = Random.Range(averageWaitFrames-30, averageWaitFrames+30);
         for(int i = 0; i < movingFrameAmount; i++)
@@ -48,6 +44,11 @@ public class BasicEnemy2Behaviour : MonoBehaviour
             transform.position += transform.forward * speed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        yield return new WaitForSeconds(Random.Range(1, 2));//stop enemy
+        //correct the rotation so that the enemy is looking at the player
+        transform.LookAt(Player);
+        yield return new WaitForSeconds(Random.Range(1, 2));//stop enemy
+        
         //unblock the start of a new coroutine
         isRunning = false;
     }
