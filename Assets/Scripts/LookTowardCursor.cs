@@ -17,13 +17,13 @@ public class LookTowardCursor : MonoBehaviour
         float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
         ////Ta Daaa
-        transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        transform.rotation = Quaternion.Euler(new Vector3(0f, - angle, 0f ));
 
      
     }
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
     {
-        return Mathf.Atan2(a.z - b.z, a.y - b.y) * Mathf.Rad2Deg;
+        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
 }
