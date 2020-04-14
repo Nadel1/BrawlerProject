@@ -11,6 +11,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     public float range = 3;
 
     private Transform Player;
+   
     // Start is called before the first frame update
     void Start()
     {

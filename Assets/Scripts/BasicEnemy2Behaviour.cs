@@ -18,6 +18,7 @@ public class BasicEnemy2Behaviour : MonoBehaviour
     //random value that determines for how many frames the enemy will be moved
     private int movingFrameAmount;
 
+    private int seed;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,8 @@ public class BasicEnemy2Behaviour : MonoBehaviour
     {
         //block the start of a new coroutine using the boolean variable 
         isRunning = true;
+        seed = (int)(Time.unscaledTime * 100000 + 1000);
+        UnityEngine.Random.InitState(seed);
         //determine a random frame amount for which the enemy will be moved
         movingFrameAmount = Random.Range(averageWaitFrames-30, averageWaitFrames+30);
         for(int i = 0; i < movingFrameAmount; i++)
@@ -44,9 +47,13 @@ public class BasicEnemy2Behaviour : MonoBehaviour
             transform.position += transform.forward * speed * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
+        seed = (int)(Time.unscaledTime * 100000 + 1000);
+        UnityEngine.Random.InitState(seed);
         yield return new WaitForSeconds(Random.Range(1, 2));//stop enemy
         //correct the rotation so that the enemy is looking at the player
         transform.LookAt(Player);
+        seed = (int)(Time.unscaledTime * 100000 + 1000);
+        UnityEngine.Random.InitState(seed);
         yield return new WaitForSeconds(Random.Range(1, 2));//stop enemy
         
         //unblock the start of a new coroutine
