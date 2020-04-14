@@ -785,6 +785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbe110437cf5084e942c8325695ce02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  health: 100
 --- !u!114 &1850466876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -809,5 +811,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b95dac148496c3448ef6a3e46596b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicProjectile: {fileID: 866522308015902346, guid: cc9a87bd1b6a99841b38526d5cfef910,
+  basicProjectile: {fileID: 2639412531038890910, guid: 0aaa6f45de25a234781c999342e3c54b,
     type: 3}

@@ -28,6 +28,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        new Quaternion(0, 0, 0, 1);
         if (Player != null)
         {
             transform.LookAt(Player);
@@ -59,5 +60,17 @@ public class BasicEnemyBehaviour : MonoBehaviour
         yield return new WaitForSeconds(coolDown);
         //unblock next attack
         isCooling = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+            health -= other.gameObject.GetComponent<Projectile>().damage;
+            Destroy(other.gameObject);
+            if (health < 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
