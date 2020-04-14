@@ -33,7 +33,6 @@ public class BasicEnemy2Behaviour : MonoBehaviour
             StartCoroutine(Run());
     }
 
-   
     IEnumerator Run()
     {
         //block the start of a new coroutine using the boolean variable 
@@ -58,5 +57,18 @@ public class BasicEnemy2Behaviour : MonoBehaviour
         
         //unblock the start of a new coroutine
         isRunning = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Projectile")
+        {
+            health-=other.gameObject.GetComponent<Projectile>().damage;
+            Destroy(other.gameObject);
+            if (health < 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
