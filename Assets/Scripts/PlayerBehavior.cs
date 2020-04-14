@@ -16,12 +16,7 @@ public class PlayerBehavior : MonoBehaviour
     void FixedUpdate()
     {
         movePlayer();
-        //RotateToCursor();
-    }
-
-    void RotateToCursor()
-    {
-        transform.Rotate(0, Input.GetAxis("Mouse X") * speed, 0);
+       
     }
     void movePlayer()
     {
