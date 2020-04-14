@@ -16,7 +16,7 @@ public class PlayerBehavior : MonoBehaviour
     void FixedUpdate()
     {
         movePlayer();
-        RotateToCursor();
+        //RotateToCursor();
     }
 
     void RotateToCursor()
