@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
-    Rigidbody player_Rigidbody;
+    private Rigidbody player_Rigidbody;
 
-    private float speed = 15;
+    public float speed = 15;
+    public float health = 100;
 
     void Start()
     {
@@ -16,19 +17,22 @@ public class PlayerBehavior : MonoBehaviour
     void FixedUpdate()
     {
         movePlayer();
-        //RotateToCursor();
     }
-
-    void RotateToCursor()
-    {
-        transform.Rotate(0, Input.GetAxis("Mouse X") * speed, 0);
-    }
-    void movePlayer()
+    private void movePlayer()
     {
         float moveLeftRight = Input.GetAxis("Horizontal");
         float moveUpDown = Input.GetAxis("Vertical");
 
         player_Rigidbody.velocity = new Vector3(moveLeftRight * speed, player_Rigidbody.velocity.y, moveUpDown * speed);
+    }
+    //method called by the enemy, damage is enemy specific
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health < 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
 
