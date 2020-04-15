@@ -17,17 +17,31 @@ public class BasicEnemy2Behaviour : MonoBehaviour
     private bool isRunning;
     //determine for how many frames the enemy moves before correcting the rotation
     public int averageWaitFrames = 230;
+
+    //used in order to make closer explosions more powerful than further away ones
+    public float explosionRange = 45;
+    //campls the stress so that no single explosion can be the maximum
+    public float maximumStress = 0.6f;
     //random value that determines for how many frames the enemy will be moved
     private int movingFrameAmount;
 
+    //calculated stress value that is sent to the camera to make it rumble
+    private float stress;
+    //used to calculate the distance of the enemy to the player which influences the intensity of the rumble
+    private float distanceToPlayer;
+    private float distance;
+    //camera gameobject (object that will be rumbled)
+    private GameObject target;
     private bool isCooling;
     private int seed;
+
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.FindWithTag("Player").transform;
         isRunning = false;
         isCooling = false;
+        target = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     // Update is called once per frame
@@ -100,6 +114,16 @@ public class BasicEnemy2Behaviour : MonoBehaviour
             Destroy(other.gameObject);
             if (health < 0)
             {
+                //distance calcultation to the player
+                distanceToPlayer = Vector3.Distance(transform.position, Player.transform.position);
+                distance = Mathf.Clamp01(distanceToPlayer / explosionRange);
+
+                //calculate the actual stress factor that should be sent to the camera
+                stress = (1 - Mathf.Pow(distance, 2) * maximumStress);
+
+                //rumble the camera
+                target.GetComponent<RumbleEffect>().induceStress(stress);
+
                 Destroy(this.gameObject);
             }
         }

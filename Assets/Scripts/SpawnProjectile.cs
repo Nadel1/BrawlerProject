@@ -16,7 +16,7 @@ public class SpawnProjectile : MonoBehaviour
     }
     void Update()
     {
-            if (Input.GetMouseButtonDown(0)) // not nice, always use GetButton
+            if (Input.GetMouseButtonDown(0)) 
             {
                 Vector3 position = new Vector3(transform.position.x , transform.position.y, transform.position.z);
                 
