@@ -125,6 +125,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
         float flashingFor = 0;
         var newColor = flashColor;
 
+        //alternate between the two given colors as long as specified
         while (flashingFor < flashTime)
         {
             this.GetComponent<MeshRenderer>().material.color = newColor;
@@ -140,6 +141,7 @@ public class BasicEnemyBehaviour : MonoBehaviour
                 newColor = flashColor;
             }
         }
+        //enemy should return to original color after the effect
         GetComponent<MeshRenderer>().material.color = originalColor;
     }
 }
