@@ -110,8 +110,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   speed: 3
+  damage: 30
+  coolDown: 1
   range: 3
   averageWaitFrames: 230
+  explosionRange: 45
+  maximumStress: 0.6
+  flashColor: {r: 1, g: 1, b: 1, a: 0}
+  flashTime: 0.5
+  flashSpeed: 0.06
 --- !u!54 &6564517620832948680
 Rigidbody:
   m_ObjectHideFlags: 0

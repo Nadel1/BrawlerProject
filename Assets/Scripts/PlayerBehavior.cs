@@ -34,7 +34,7 @@ public class PlayerBehavior : MonoBehaviour
         health -= damage;
         if (health < 0)
         {
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
